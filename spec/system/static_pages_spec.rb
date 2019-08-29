@@ -8,7 +8,7 @@ RSpec.describe "StaticPages", type: :system do
   describe "home" do
     it "ページタイトルが正しく表示されている" do
       visit static_pages_home_url
-      expect(page).to have_title "Home | #{@base_title}"
+      expect(page).to have_title "#{@base_title}"
     end
   end
 
