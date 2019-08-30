@@ -10,28 +10,28 @@ RSpec.describe "StaticPagesControllers", type: :request do
 
   describe "#home" do
     it "should get home" do
-      get static_pages_home_url
+      get root_path
       expect(response).to be_success
     end
   end
 
   describe "#help" do
     it "should get help" do
-      get static_pages_help_url
+      get help_path
       expect(response).to be_success
     end
   end
 
   describe "#about" do
     it "should get about" do
-      get static_pages_about_url
+      get about_path
       expect(response).to be_success
     end
   end
 
   describe "#contact" do
     it "should get contact" do
-      get static_pages_contact_url
+      get contact_path
       expect(response).to be_success
     end
   end
