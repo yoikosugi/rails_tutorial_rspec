@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails',        '5.1.6'
+gem 'bcrypt',       '3.1.12'
 gem 'bootstrap-sass', '3.3.7'
 gem 'puma',         '3.9.1'
 gem 'sass-rails',   '5.0.6'
@@ -14,6 +15,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.8.0'
   gem 'sqlite3', '1.3.13'
   gem 'byebug',  '9.0.6', platform: :mri
+  gem 'factory_bot_rails', '~> 4.10.0'
 end
 
 group :development do
@@ -32,9 +34,7 @@ group :test do
   gem 'guard-minitest',           '2.4.4'
   gem 'capybara', '~> 2.15.2'
   gem 'selenium-webdriver'
-  gem 'guard-rspec', require: false
-  gem 'terminal-notifier'
-  gem 'terminal-notifier-guard'
+  gem 'webdrivers'
 end
 
 group :production do
