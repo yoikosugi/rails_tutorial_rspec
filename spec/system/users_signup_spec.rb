@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Users", type: :system do
+RSpec.describe "UsersSignup", type: :system do
   describe "有効なユーザー登録" do
     it "ユーザー登録に成功する" do
       visit root_path
@@ -15,6 +15,14 @@ RSpec.describe "Users", type: :system do
       }.to change(User, :count).by(1)
 
       expect(page).to have_css ".alert-success"
+
+      user = User.last
+      expect(current_path).to eq user_path(user)
+
+      within '.navbar-nav' do
+        expect(page).to_not have_content 'Log in'
+        expect(page).to have_content 'Account'
+      end
     end
   end
 
