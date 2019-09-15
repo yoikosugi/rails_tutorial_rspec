@@ -1,11 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe "validation" do
-    before do
-      @user = FactoryBot.create(:user)
-    end
 
+  before do
+    @user = FactoryBot.create(:user)
+  end
+
+  describe "validation" do
     context "when user is valid" do
       it "should be valid with" do
         expect(@user).to be_valid
@@ -72,6 +73,14 @@ RSpec.describe User, type: :model do
       @user.email = mixed_case_email
       @user.save
       expect(@user.reload.email).to eq mixed_case_email.downcase
+    end
+  end
+
+  describe "User model methods" do
+    context "authenticated?" do
+      it "digestがnilのときfalseを返す" do
+        expect(@user.authenticated?('')).to be_falsey
+      end
     end
   end
 end
