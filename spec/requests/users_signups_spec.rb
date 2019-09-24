@@ -4,7 +4,7 @@ RSpec.describe "UsersSignups", type: :request do
   include SessionsHelper
 
   describe "GET /signup" do
-    xit "有効なユーザー登録" do
+    it "有効なユーザー登録" do
       get signup_path
       expect {
         post signup_path, params: {

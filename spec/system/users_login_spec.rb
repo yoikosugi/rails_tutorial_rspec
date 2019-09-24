@@ -8,7 +8,7 @@ RSpec.describe "UsersLogin", type: :system do
 
   describe "ログイン" do
     it "ログインに成功すること" do
-      visit root_path
+      visit login_path
       click_link "Log in"
 
       fill_in "Email", with: @user.email
