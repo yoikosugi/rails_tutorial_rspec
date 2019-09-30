@@ -5,6 +5,7 @@ FactoryBot.define do
     password "foobar"
     password_confirmation "foobar"
     admin true
+    activated true
 
     trait :archer do
       name "Sterling Archer"
