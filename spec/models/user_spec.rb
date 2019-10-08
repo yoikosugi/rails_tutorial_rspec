@@ -83,4 +83,14 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe "has_many dependent" do
+    it "userが削除されると、userのmicropostsも削除される" do
+      @user.save
+      @user.microposts.create!(content: "Lorem ipsum")
+      expect {
+        @user.destroy
+      }.to change(Micropost, :count).by(-1)
+    end
+  end
 end

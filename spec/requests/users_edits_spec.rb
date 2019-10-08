@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "UsersEdits", type: :request do
 
   let(:user) { FactoryBot.create(:user) }
-  let(:archer) { FactoryBot.create(:user, :archer) }
+  let(:other_user) { FactoryBot.create(:user, :other_user) }
 
   describe "GET /edit" do
 
@@ -96,7 +96,7 @@ RSpec.describe "UsersEdits", type: :request do
 
     context "間違ったユーザーが編集しようとするとき" do
       it "get editすると、リダイレクトされる" do
-        log_in_as(archer)
+        log_in_as(other_user)
         get edit_user_path(user)
         expect(flash[:danger]).to be_falsey
         follow_redirect!
@@ -104,7 +104,7 @@ RSpec.describe "UsersEdits", type: :request do
       end
 
       it "patch updateすると、リダイレクトされる" do
-        log_in_as(archer)
+        log_in_as(other_user)
         patch user_path(user), params: {
           user: {
             name: "Foo Bar",
@@ -119,16 +119,16 @@ RSpec.describe "UsersEdits", type: :request do
       end
 
       it "admin属性の変更を許可しない" do
-        log_in_as(archer)
-        expect(archer.admin?).to be_falsey
-        patch user_path(archer), params: {
+        log_in_as(other_user)
+        expect(other_user.admin?).to be_falsey
+        patch user_path(other_user), params: {
           user: {
-            password: archer.password,
-            password_confirmation: archer.password,
+            password: other_user.password,
+            password_confirmation: other_user.password,
             admin: true
           }
         }
-        expect(archer.reload.admin?).to be_falsey
+        expect(other_user.reload.admin?).to be_falsey
       end
     end
   end
