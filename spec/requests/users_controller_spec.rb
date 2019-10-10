@@ -25,4 +25,20 @@ RSpec.describe "UsersController", type: :request do
       expect(request.fullpath).to eq '/login'
     end
   end
+
+  describe "#following" do
+    it "未ログイン時、リダイレクトする" do
+      get following_user_path(user)
+      follow_redirect!
+      expect(request.fullpath).to eq '/login'
+    end
+  end
+
+  describe "#followers" do
+    it "未ログイン時、リダイレクトする" do
+      get followers_user_path(user)
+      follow_redirect!
+      expect(request.fullpath).to eq '/login'
+    end
+  end
 end
